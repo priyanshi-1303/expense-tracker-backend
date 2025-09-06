@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -8,21 +7,17 @@ const app = express();
 
 // ---------- Middlewares ----------
 const corsOptions = {
-  origin: "http://localhost:3000", // frontend allowed
-  methods: "GET,POST,PUT,DELETE",
+  origin: [
+    "http://localhost:3000", 
+    "https://expense-tracker-frontend-three-navy.vercel.app"
+  ], // ✅ allow localhost + vercel frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 };
 app.use(cors(corsOptions));
 app.use(express.json());  // JSON parsing
 
-
-
-
-
 // ---------- Routes ----------
-
-
-
 const expenseRoutes = require('./routes/expenseRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 
